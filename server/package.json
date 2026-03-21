@@ -1,0 +1,19 @@
+{
+  "name": "dwangwaweb-server",
+  "version": "1.0.0",
+  "description": "Backend API for Dwangwa CCAP Mission Church",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "init-db": "node initDb.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.7"
+  }
+}
