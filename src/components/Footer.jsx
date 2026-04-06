@@ -11,8 +11,8 @@ const Footer = () => {
           {/* Brand Col */}
           <div className="col-span-1 lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="bg-white/10 p-2 rounded-full">
-                <Church className="text-secondary" size={32} />
+              <div className="bg-white p-1 rounded-full">
+                <img src="/logo.png" alt="Dwangwa CCAP Logo" className="h-10 w-10 object-contain rounded-full" />
               </div>
               <h3 className="font-heading text-2xl font-bold text-white mb-0">Dwangwa CCAP</h3>
             </div>

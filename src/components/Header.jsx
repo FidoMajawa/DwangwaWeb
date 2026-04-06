@@ -36,9 +36,7 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group" onClick={() => setIsMenuOpen(false)}>
-            <div className="bg-primary/5 p-2 rounded-full group-hover:bg-primary/10 transition-colors">
-              <Church size={32} className="text-primary" />
-            </div>
+            <img src="/logo.png" alt="Dwangwa CCAP Logo" className="h-12 w-12 object-contain group-hover:scale-105 transition-transform" />
             <div>
               <h1 className="font-heading text-xl md:text-2xl font-bold text-primary leading-tight">Dwangwa CCAP</h1>
               <p className="text-sm text-slate-500 font-medium tracking-wide">Mission Church</p>

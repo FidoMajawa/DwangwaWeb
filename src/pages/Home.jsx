@@ -9,9 +9,9 @@ const Home = () => {
       <section className="relative bg-primary-dark text-white pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
         {/* Background Image Setup */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?auto=format&fit=crop&q=80&w=2000" 
-            alt="Church Hero" 
+          <img
+            src="https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?auto=format&fit=crop&q=80&w=2000"
+            alt="Church Hero"
             className="w-full h-full object-cover opacity-30"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary/80 to-transparent"></div>
@@ -19,8 +19,8 @@ const Home = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="inline-block py-1 px-3 rounded-full bg-secondary text-primary-dark text-xs font-bold tracking-wider uppercase mb-6 shadow-sm">Welcome Home</span>
-          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-md">
-            Dwangwa CCAP <br className="hidden md:block"/> Mission Church
+          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-md text-amber-500">
+            Dwangwa CCAP <br className="hidden md:block" /> Mission Church
           </h1>
           <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
             Growing Together in Faith, Serving in Love, and Glorifying God in Everything We Do.
@@ -50,7 +50,7 @@ const Home = () => {
                 View Calendar <ArrowRight size={18} />
               </Link>
             </div>
-            
+
             <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 group">
               <div className="w-16 h-16 rounded-2xl bg-secondary/20 flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-primary-dark transition-colors text-yellow-600">
                 <Users size={32} />
@@ -61,7 +61,7 @@ const Home = () => {
                 Connect Now <ArrowRight size={18} />
               </Link>
             </div>
-            
+
             <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 group">
               <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
                 <BookOpen size={32} />
@@ -95,8 +95,8 @@ const Home = () => {
             <span className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-secondary rounded-full"></span>
           </h2>
           <p className="text-lg text-slate-600 mb-10 leading-relaxed mt-6">
-            Whether you are a lifelong believer, new to the Christian faith, or simply searching for a community, 
-            you are welcome here at Dwangwa CCAP Mission Church. Our doors are open to everyone seeking spiritual growth, 
+            Whether you are a lifelong believer, new to the Christian faith, or simply searching for a community,
+            you are welcome here at Dwangwa CCAP Mission Church. Our doors are open to everyone seeking spiritual growth,
             fellowship, and an opportunity to serve others.
           </p>
           <Link to="/contact" className="inline-block px-8 py-3 border-2 border-primary text-primary font-semibold rounded-md hover:bg-primary hover:text-white transition-colors">
