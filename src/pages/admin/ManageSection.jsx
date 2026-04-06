@@ -83,7 +83,7 @@ const ManageSection = ({ title, endpoint, fields }) => {
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-        <h1 style={{ color: 'var(--color-primary-dark)', margin: 0 }}>Manage {title}</h1>
+        <h1 style={{ color: 'var(--color-secondary)', margin: 0 }}>Manage {title}</h1>
         {!isEditing && (
           <button onClick={() => handleOpenForm()} className="btn btn-primary" style={{ display: 'flex', gap: '0.5rem' }}>
             <Plus size={20} /> Add New

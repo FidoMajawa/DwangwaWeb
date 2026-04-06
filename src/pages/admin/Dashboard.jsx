@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Dashboard = () => {
   return (
     <div>
-      <h1 style={{ color: 'var(--color-primary-dark)', marginBottom: '2rem' }}>Welcome to the Admin Dashboard</h1>
+      <h1 style={{ color: 'var(--color-secondary)', marginBottom: '2rem' }}>Welcome to the Admin Dashboard</h1>
       <p style={{ color: 'var(--color-text-light)', marginBottom: '2rem' }}>
         From here, you can manage the content for the Dwangwa CCAP website. Select a section from the sidebar to begin editing.
       </p>

@@ -22,7 +22,7 @@ const Events = () => {
     <div className="bg-slate-50 min-h-screen pb-20">
       <div className="bg-primary-dark pt-20 pb-16 text-white text-center">
         <div className="max-w-4xl mx-auto px-4 mt-8">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">Upcoming Events</h1>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 drop-shadow-md text-secondary">Upcoming Events</h1>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">Stay connected with what is happening in our church family.</p>
         </div>
       </div>

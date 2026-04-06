@@ -38,7 +38,7 @@ const Header = () => {
           <Link to="/" className="flex items-center gap-3 group" onClick={() => setIsMenuOpen(false)}>
             <img src="/logo.png" alt="Dwangwa CCAP Logo" className="h-12 w-12 object-contain group-hover:scale-105 transition-transform" />
             <div>
-              <h1 className="font-heading text-xl md:text-2xl font-bold text-primary leading-tight">Dwangwa CCAP</h1>
+              <h1 className="font-heading text-xl md:text-2xl font-bold leading-tight text-secondary">Dwangwa CCAP</h1>
               <p className="text-sm text-slate-500 font-medium tracking-wide">Mission Church</p>
             </div>
           </Link>

@@ -22,7 +22,7 @@ const Leadership = () => {
       {/* Page Header */}
       <div className="bg-primary pt-20 pb-16 text-white text-center">
         <div className="max-w-4xl mx-auto px-4 mt-8">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">Church Leadership</h1>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 drop-shadow-md text-secondary">Church Leadership</h1>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">Meet the team dedicated to serving God and our congregation.</p>
         </div>
       </div>

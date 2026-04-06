@@ -22,7 +22,7 @@ const Sermons = () => {
     <div className="bg-slate-50 min-h-screen pb-20">
       <div className="bg-primary pt-20 pb-16 text-white text-center bg-[url('https://images.unsplash.com/photo-1544281781-64536cd35e4d?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center bg-blend-overlay">
         <div className="max-w-4xl mx-auto px-4 mt-8 relative z-10">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">Sermons & Resources</h1>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 drop-shadow-md text-secondary">Sermons & Resources</h1>
           <p className="text-lg text-white/90 max-w-2xl mx-auto">Listen to past messages and access study materials.</p>
         </div>
       </div>

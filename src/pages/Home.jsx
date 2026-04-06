@@ -19,7 +19,7 @@ const Home = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="inline-block py-1 px-3 rounded-full bg-secondary text-primary-dark text-xs font-bold tracking-wider uppercase mb-6 shadow-sm">Welcome Home</span>
-          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-md text-amber-500">
+          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-md text-secondary">
             Dwangwa CCAP <br className="hidden md:block" /> Mission Church
           </h1>
           <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
