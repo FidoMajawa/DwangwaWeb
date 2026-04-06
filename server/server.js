@@ -15,6 +15,11 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+// Root path for testing if the server is alive from a browser
+app.get('/', (req, res) => {
+  res.send('Dwangwa CCAP Backend Server is correctly running!');
+});
+
 // Auth Middleware
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
