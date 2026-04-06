@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Clock, MapPin, Calendar as CalendarIcon } from 'lucide-react';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || `${API_BASE_URL}`;
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const Events = () => {
   const [events, setEvents] = useState([]);
