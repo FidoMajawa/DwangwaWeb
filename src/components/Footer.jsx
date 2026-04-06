@@ -38,7 +38,7 @@ const Footer = () => {
               <span className="w-4 h-1 bg-secondary rounded-full"></span> Quick Links
             </h4>
             <ul className="space-y-3">
-              {[{name: 'Home', path: '/'}, {name: 'About Us', path: '/about'}, {name: 'Ministries', path: '/ministries'}, {name: 'Sermons', path: '/sermons'}, {name: 'Events', path: '/events'}, {name: 'Contact', path: '/contact'}].map((link) => (
+              {[{name: 'Home', path: '/'}, {name: 'About Us', path: '/about'}, {name: 'Ministries', path: '/ministries'}, {name: 'Livestream', path: '/live'}, {name: 'Give', path: '/give'}, {name: 'Contact', path: '/contact'}].map((link) => (
                 <li key={link.name}>
                   <Link to={link.path} className="text-slate-300 hover:text-secondary transition-colors inline-block hover:translate-x-1 transform duration-200">
                     {link.name}

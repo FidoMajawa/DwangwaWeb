@@ -13,6 +13,8 @@ import Events from './pages/Events';
 import Gallery from './pages/Gallery';
 import News from './pages/News';
 import Contact from './pages/Contact';
+import Live from './pages/Live';
+import Give from './pages/Give';
 
 // Admin Pages
 import Login from './pages/admin/Login';
@@ -81,6 +83,8 @@ function App() {
                   <Route path="/gallery" element={<Gallery />} />
                   <Route path="/news" element={<News />} />
                   <Route path="/contact" element={<Contact />} />
+                  <Route path="/live" element={<Live />} />
+                  <Route path="/give" element={<Give />} />
                 </Routes>
               </main>
               <Footer />

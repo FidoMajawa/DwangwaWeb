@@ -26,6 +26,7 @@ const Header = () => {
     { name: 'Events', path: '/events' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'News', path: '/news' },
+    { name: 'Live', path: '/live' },
   ];
 
   return (
@@ -54,9 +55,15 @@ const Header = () => {
                 {link.name}
               </NavLink>
             ))}
+            <Link 
+              to="/give" 
+              className="ml-4 px-6 py-2.5 rounded-md text-sm font-semibold bg-primary text-secondary hover:bg-primary-dark transition-colors"
+            >
+              Give
+            </Link>
             <NavLink 
               to="/contact" 
-              className="ml-4 px-6 py-2.5 rounded-md text-sm font-semibold bg-secondary text-primary-dark hover:bg-secondary-light transition-all shadow-sm hover:shadow hover:-translate-y-0.5"
+              className="ml-2 px-6 py-2.5 rounded-md text-sm font-semibold bg-secondary text-primary-dark hover:bg-secondary-light transition-all shadow-sm hover:shadow hover:-translate-y-0.5"
             >
               Contact
             </NavLink>
@@ -84,13 +91,22 @@ const Header = () => {
                 {link.name}
               </NavLink>
             ))}
-            <NavLink 
-              to="/contact" 
-              className="mt-2 block w-full text-center px-4 py-3 rounded-md text-base font-semibold bg-secondary text-primary-dark hover:bg-secondary-light transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contact Us
-            </NavLink>
+            <div className="mt-2 flex flex-col gap-2">
+              <Link 
+                to="/give" 
+                className="block w-full text-center px-4 py-3 rounded-md text-base font-semibold bg-primary text-secondary hover:bg-primary-dark transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Give Online
+              </Link>
+              <NavLink 
+                to="/contact" 
+                className="block w-full text-center px-4 py-3 rounded-md text-base font-semibold bg-secondary text-primary-dark hover:bg-secondary-light transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact Us
+              </NavLink>
+            </div>
           </nav>
         </div>
       </header>
