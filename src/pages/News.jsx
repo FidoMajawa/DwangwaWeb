@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || `${API_BASE_URL}`;
+
 const News = () => {
   const [newsItems, setNewsItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/news')
+    fetch(`${API_BASE_URL}/api/news`)
       .then(res => res.json())
       .then(data => {
         setNewsItems(data);

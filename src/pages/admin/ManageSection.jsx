@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2 } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || `${API_BASE_URL}`;
+
 const ManageSection = ({ title, endpoint, fields }) => {
   const [data, setData] = useState([]);
   const [isEditing, setIsEditing] = useState(false);

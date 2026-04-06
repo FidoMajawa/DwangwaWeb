@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Clock, MapPin, Calendar as CalendarIcon } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || `${API_BASE_URL}`;
+
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/events')
+    fetch(`${API_BASE_URL}/api/events`)
       .then(res => res.json())
       .then(data => {
         setEvents(data);

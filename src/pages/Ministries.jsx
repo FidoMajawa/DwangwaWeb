@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Users, Music, Heart, Sun, Bookmark } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || `${API_BASE_URL}`;
+
 const iconsMap = {
   Users: <Users size={40} className="text-secondary" />,
   Music: <Music size={40} className="text-secondary" />,
@@ -14,7 +16,7 @@ const Ministries = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/ministries')
+    fetch(`${API_BASE_URL}/api/ministries`)
       .then(res => res.json())
       .then(data => {
         setMinistries(data);

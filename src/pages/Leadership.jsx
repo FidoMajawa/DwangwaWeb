@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || `${API_BASE_URL}`;
+
 const Leadership = () => {
   const [leaders, setLeaders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/leaders')
+    fetch(`${API_BASE_URL}/api/leaders`)
       .then(res => res.json())
       .then(data => {
         setLeaders(data);

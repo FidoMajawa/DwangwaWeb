@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { PlayCircle, Download, FileText, Calendar as CalendarIcon, User, BookOpen } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || `${API_BASE_URL}`;
+
 const Sermons = () => {
   const [sermons, setSermons] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/sermons')
+    fetch(`${API_BASE_URL}/api/sermons`)
       .then(res => res.json())
       .then(data => {
         setSermons(data);
