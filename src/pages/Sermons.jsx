@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PlayCircle, Download, FileText } from 'lucide-react';
+import { PlayCircle, Download, FileText, Calendar as CalendarIcon, User, BookOpen } from 'lucide-react';
 
 const Sermons = () => {
   const [sermons, setSermons] = useState([]);
@@ -19,52 +19,79 @@ const Sermons = () => {
   }, []);
 
   return (
-    <div className="sermons-page">
-      <div className="page-header" style={{ backgroundColor: 'var(--color-primary)', padding: 'var(--space-3xl) 0', color: 'white', textAlign: 'center' }}>
-        <div className="container">
-          <h1 className="page-title" style={{ fontSize: '3rem', margin: 0 }}>Sermons & Resources</h1>
-          <p className="page-subtitle" style={{ fontSize: '1.25rem', opacity: 0.9, marginTop: 'var(--space-sm)' }}>
-            Listen to past messages and access study materials.
-          </p>
+    <div className="bg-slate-50 min-h-screen pb-20">
+      <div className="bg-primary pt-20 pb-16 text-white text-center bg-[url('https://images.unsplash.com/photo-1544281781-64536cd35e4d?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center bg-blend-overlay">
+        <div className="max-w-4xl mx-auto px-4 mt-8 relative z-10">
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">Sermons & Resources</h1>
+          <p className="text-lg text-white/90 max-w-2xl mx-auto">Listen to past messages and access study materials.</p>
         </div>
       </div>
 
-      <section className="content-section bg-surface" style={{ padding: 'var(--space-3xl) 0', minHeight: '50vh' }}>
-        <div className="container" style={{ maxWidth: '800px' }}>
-          
-          <h2 className="section-title">Latest Messages</h2>
-          
-          {loading ? (
-            <div style={{ textAlign: 'center', padding: '2rem' }}>Loading sermons...</div>
-          ) : sermons.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '2rem' }}>No sermons available.</div>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              {sermons.map((sermon) => (
-                <div key={sermon.id} style={{ display: 'flex', flexDirection: 'column', background: 'var(--color-background)', borderRadius: 'var(--radius-md)', padding: 'var(--space-lg)', borderLeft: '4px solid var(--color-secondary)', boxShadow: 'var(--shadow-sm)' }}>
-                  <div style={{ flex: 1 }}>
-                    <span style={{ fontSize: '0.875rem', color: 'var(--color-text-light)', fontWeight: 500, textTransform: 'uppercase' }}>{sermon.date} {sermon.series ? `• ${sermon.series}` : ''}</span>
-                    <h3 style={{ color: 'var(--color-primary)', margin: '0.25rem 0' }}>{sermon.title}</h3>
-                    <p style={{ color: 'var(--color-text)', marginBottom: '0.5rem' }}>Speaker: <strong>{sermon.preacher}</strong></p>
-                    <p style={{ color: 'var(--color-secondary)', fontSize: '0.875rem', fontWeight: 600 }}>{sermon.scripture}</p>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 min-h-[50vh]">
+        <h2 className="font-heading text-3xl font-bold text-primary mb-10 flex items-center gap-3">
+          <span className="w-8 h-1 bg-secondary rounded-full inline-block"></span> Latest Messages
+        </h2>
+        
+        {loading ? (
+          <div className="text-center py-10 text-slate-500 font-medium animate-pulse">Loading sermons...</div>
+        ) : sermons.length === 0 ? (
+          <div className="text-center py-10 text-slate-500 font-medium">No sermons available.</div>
+        ) : (
+          <div className="space-y-6">
+            {sermons.map((sermon) => (
+              <div 
+                key={sermon.id} 
+                className="flex flex-col md:flex-row bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-slate-100 group"
+              >
+                {/* Date/Series badge area - Desktop */}
+                <div className="hidden md:flex flex-col items-center justify-center bg-primary text-white p-6 min-w-[140px]">
+                  <span className="text-xs font-bold uppercase tracking-wider mb-1 text-secondary">{sermon.series || 'Sermon'}</span>
+                  {sermon.date && (() => {
+                    const dateObj = new Date(sermon.date);
+                    if (!isNaN(dateObj)) {
+                      return (
+                        <>
+                          <span className="font-heading text-3xl font-bold">{dateObj.getDate()}</span>
+                          <span className="text-sm font-medium uppercase">{dateObj.toLocaleString('default', { month: 'short' })}</span>
+                        </>
+                      );
+                    }
+                    return <span className="font-heading text-xl font-bold text-center mt-2">{sermon.date}</span>;
+                  })()}
+                </div>
+
+                {/* Main Content Info */}
+                <div className="p-6 md:p-8 flex-1">
+                  {/* Mobile Date/Series */}
+                  <div className="md:hidden flex items-center gap-2 text-xs font-bold uppercase tracking-wider mb-3 text-primary">
+                    <CalendarIcon size={14} className="text-secondary" />
+                    {sermon.date} {sermon.series ? `• ${sermon.series}` : ''}
                   </div>
-                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
-                    <button className="btn btn-primary" style={{ padding: '0.5rem 1rem', display: 'flex', gap: '0.5rem' }}>
-                      <PlayCircle size={20} /> Listen
+                  
+                  <h3 className="font-heading text-2xl font-bold text-slate-800 mb-3 group-hover:text-primary transition-colors">{sermon.title}</h3>
+                  <div className="flex flex-wrap gap-4 text-sm text-slate-600 mb-4">
+                    <span className="flex items-center gap-1.5"><User size={16} className="text-secondary" /> <strong>{sermon.preacher}</strong></span>
+                    <span className="flex items-center gap-1.5 text-primary-dark font-semibold px-2.5 py-0.5 bg-secondary/20 rounded-md">
+                      <BookOpen size={16} /> {sermon.scripture}
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 mt-6 pt-6 border-t border-slate-100 flex-wrap">
+                    <button className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-md font-medium hover:bg-primary-dark transition-colors shadow-sm hover:shadow">
+                      <PlayCircle size={18} /> Listen
                     </button>
-                    <button className="btn btn-outline" title="Download Audio" style={{ padding: '0.5rem' }}>
+                    <button className="p-2.5 text-slate-500 hover:text-primary hover:bg-primary/5 rounded-md transition-colors border border-slate-200" title="Download Audio">
                       <Download size={20} />
                     </button>
-                    <button className="btn btn-outline" title="Sermon Notes" style={{ padding: '0.5rem' }}>
+                    <button className="p-2.5 text-slate-500 hover:text-primary hover:bg-primary/5 rounded-md transition-colors border border-slate-200" title="Sermon Notes">
                       <FileText size={20} />
                     </button>
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
-
-        </div>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
     </div>
   );

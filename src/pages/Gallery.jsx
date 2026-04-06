@@ -11,27 +11,26 @@ const photos = [
 
 const Gallery = () => {
   return (
-    <div className="gallery-page">
-      <div className="page-header" style={{ backgroundColor: 'var(--color-primary)', padding: 'var(--space-3xl) 0', color: 'white', textAlign: 'center' }}>
-        <div className="container">
-          <h1 className="page-title" style={{ fontSize: '3rem', margin: 0 }}>Photo Gallery</h1>
-          <p className="page-subtitle" style={{ fontSize: '1.25rem', opacity: 0.9, marginTop: 'var(--space-sm)' }}>
-            Moments captured in our fellowship and community life.
-          </p>
+    <div className="bg-slate-50 min-h-screen pb-20">
+      <div className="bg-primary/90 pt-20 pb-16 text-white text-center">
+        <div className="max-w-4xl mx-auto px-4 mt-8">
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">Photo Gallery</h1>
+          <p className="text-lg text-white/90 max-w-2xl mx-auto">Moments captured in our fellowship and community life.</p>
         </div>
       </div>
 
-      <section className="content-section bg-surface" style={{ padding: 'var(--space-3xl) 0' }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
-            {photos.map((url, idx) => (
-              <div key={idx} style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-md)', aspectRatio: '1/1', background: 'var(--color-background)' }}>
-                <img src={url} alt={`Gallery ${idx}`} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }} 
-                     onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'} 
-                     onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'} />
-              </div>
-            ))}
-          </div>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 min-h-[50vh]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+          {photos.map((url, idx) => (
+            <div key={idx} className="rounded-xl overflow-hidden shadow-md aspect-square bg-slate-200 group relative">
+              <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none"></div>
+              <img 
+                src={url} 
+                alt={`Gallery ${idx}`} 
+                className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-110" 
+              />
+            </div>
+          ))}
         </div>
       </section>
     </div>

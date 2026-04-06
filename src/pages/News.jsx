@@ -18,38 +18,36 @@ const News = () => {
   }, []);
 
   return (
-    <div className="news-page">
-      <div className="page-header" style={{ backgroundColor: 'var(--color-primary-dark)', padding: 'var(--space-3xl) 0', color: 'white', textAlign: 'center' }}>
-        <div className="container">
-          <h1 className="page-title" style={{ fontSize: '3rem', margin: 0 }}>Church News</h1>
-          <p className="page-subtitle" style={{ fontSize: '1.25rem', opacity: 0.9, marginTop: 'var(--space-sm)' }}>
-            Stay informed with the latest updates and announcements.
-          </p>
+    <div className="bg-slate-50 min-h-screen pb-20">
+      <div className="bg-primary-dark pt-20 pb-16 text-white text-center">
+        <div className="max-w-4xl mx-auto px-4 mt-8">
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">Church News</h1>
+          <p className="text-lg text-white/80 max-w-2xl mx-auto">Stay informed with the latest updates and announcements.</p>
         </div>
       </div>
 
-      <section className="content-section bg-light" style={{ padding: 'var(--space-3xl) 0', minHeight: '50vh' }}>
-        <div className="container" style={{ maxWidth: '800px' }}>
-          {loading ? (
-            <div style={{ textAlign: 'center', padding: '3rem' }}>Loading news...</div>
-          ) : newsItems.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '3rem' }}>No news available at the moment.</div>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-              {newsItems.map((item) => (
-                <div key={item.id} style={{ background: 'var(--color-surface)', padding: 'var(--space-xl)', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-sm)', borderTop: '4px solid var(--color-primary)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                    <span style={{ fontSize: '0.875rem', color: 'var(--color-text-light)', fontWeight: 500 }}>{item.date}</span>
-                    <span style={{ background: 'var(--color-secondary)', color: 'var(--color-primary-dark)', padding: '0.25rem 0.75rem', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase' }}>{item.category}</span>
-                  </div>
-                  <h3 style={{ color: 'var(--color-primary)', fontSize: '1.5rem', marginBottom: '0.75rem' }}>{item.title}</h3>
-                  <p style={{ color: 'var(--color-text-light)', marginBottom: '1.5rem', whiteSpace: 'pre-wrap' }}>{item.excerpt}</p>
-                  <button className="btn btn-outline" style={{ padding: '0.5rem 1rem' }}>Read More</button>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 min-h-[50vh]">
+        {loading ? (
+          <div className="text-center py-10 text-slate-500 font-medium animate-pulse">Loading news...</div>
+        ) : newsItems.length === 0 ? (
+          <div className="text-center py-10 text-slate-500 font-medium bg-white rounded-xl shadow-sm border border-slate-100 p-8">No news available at the moment.</div>
+        ) : (
+          <div className="space-y-8">
+            {newsItems.map((item) => (
+              <div key={item.id} className="bg-white p-8 rounded-2xl shadow-md border-t-4 border-primary hover:shadow-lg transition-shadow">
+                <div className="flex flex-wrap justify-between items-center mb-4 gap-4">
+                  <span className="text-sm text-slate-500 font-semibold uppercase tracking-wider">{item.date}</span>
+                  <span className="bg-secondary/20 text-primary-dark px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">{item.category}</span>
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-3">{item.title}</h3>
+                <p className="text-slate-600 mb-6 leading-relaxed whitespace-pre-wrap">{item.excerpt}</p>
+                <button className="inline-block px-5 py-2 border-2 border-slate-200 text-slate-600 font-semibold rounded-md hover:border-primary hover:text-primary transition-colors">
+                  Read More
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
     </div>
   );

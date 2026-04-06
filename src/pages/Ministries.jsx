@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Users, Music, Heart, Sun, Bookmark } from 'lucide-react';
 
 const iconsMap = {
-  Users: <Users size={40} color="var(--color-secondary)" />,
-  Music: <Music size={40} color="var(--color-secondary)" />,
-  Heart: <Heart size={40} color="var(--color-secondary)" />,
-  Sun: <Sun size={40} color="var(--color-secondary)" />,
-  Bookmark: <Bookmark size={40} color="var(--color-secondary)" />
+  Users: <Users size={40} className="text-secondary" />,
+  Music: <Music size={40} className="text-secondary" />,
+  Heart: <Heart size={40} className="text-secondary" />,
+  Sun: <Sun size={40} className="text-secondary" />,
+  Bookmark: <Bookmark size={40} className="text-secondary" />
 };
 
 const Ministries = () => {
@@ -27,39 +27,40 @@ const Ministries = () => {
   }, []);
 
   return (
-    <div className="ministries-page">
-      <div className="page-header" style={{ backgroundColor: 'var(--color-primary-dark)', padding: 'var(--space-3xl) 0', color: 'white', textAlign: 'center' }}>
-        <div className="container">
-          <h1 className="page-title" style={{ fontSize: '3rem', margin: 0 }}>Our Ministries</h1>
-          <p className="page-subtitle" style={{ fontSize: '1.25rem', opacity: 0.9, marginTop: 'var(--space-sm)' }}>
-            Find your place to serve, grow, and connect.
-          </p>
+    <div className="bg-slate-50 min-h-screen pb-20">
+      <div className="bg-primary-dark pt-20 pb-16 text-white text-center">
+        <div className="max-w-4xl mx-auto px-4 mt-8">
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">Our Ministries</h1>
+          <p className="text-lg text-white/80 max-w-2xl mx-auto">Find your place to serve, grow, and connect.</p>
         </div>
       </div>
 
-      <section className="content-section bg-light" style={{ padding: 'var(--space-3xl) 0', minHeight: '50vh' }}>
-        <div className="container">
-          {loading ? (
-            <div style={{ textAlign: 'center', padding: '2rem' }}>Loading ministries...</div>
-          ) : ministries.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '2rem' }}>No ministries found.</div>
-          ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-              {ministries.map((min) => (
-                <div key={min.id} style={{ background: 'var(--color-surface)', padding: 'var(--space-xl)', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-                  <div style={{ marginBottom: 'var(--space-md)' }}>
-                    {iconsMap[min.iconName] || iconsMap['Users']}
-                  </div>
-                  <h3 style={{ color: 'var(--color-primary)', marginBottom: 'var(--space-sm)' }}>{min.title}</h3>
-                  <p style={{ color: 'var(--color-text-light)', marginBottom: 'var(--space-md)' }}>{min.description}</p>
-                  <div style={{ padding: 'var(--space-sm)', backgroundColor: 'var(--color-background)', borderRadius: 'var(--radius-sm)', fontSize: '0.875rem', fontWeight: 600, color: 'var(--color-primary)' }}>
-                    Meeting Time: {min.meeting}
-                  </div>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 min-h-[50vh]">
+        {loading ? (
+          <div className="text-center py-10 text-slate-500 font-medium animate-pulse">Loading ministries...</div>
+        ) : ministries.length === 0 ? (
+          <div className="text-center py-10 text-slate-500 font-medium">No ministries found.</div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {ministries.map((min) => (
+              <div 
+                key={min.id} 
+                className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 group hover:-translate-y-1 relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+                <div className="w-16 h-16 rounded-2xl bg-secondary/10 flex items-center justify-center mb-6">
+                  {iconsMap[min.iconName] || iconsMap['Users']}
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
+                <h3 className="font-heading text-2xl font-bold text-primary mb-3 group-hover:text-primary-dark transition-colors">{min.title}</h3>
+                <p className="text-slate-600 mb-6 leading-relaxed relative z-10">{min.description}</p>
+                <div className="inline-block px-4 py-2 bg-slate-50 rounded-md text-sm font-semibold text-primary border border-slate-100">
+                  <span className="text-slate-500 font-medium mr-2">Meeting Time:</span>
+                  {min.meeting}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
     </div>
   );
