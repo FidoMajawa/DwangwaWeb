@@ -8,11 +8,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const JWT_SECRET = process.env.JWT_SECRET || 'dwangwa-super-secret-key';
 
-const corsOptions = {
-  origin: process.env.FRONTEND_URL ? [process.env.FRONTEND_URL, 'http://localhost:5173', 'http://localhost:5174'] : '*',
-  credentials: true,
-};
-app.use(cors(corsOptions));
+// Open CORS to prevent any blocking issues between Render and Vercel
+app.use(cors());
 app.use(express.json());
 
 // Root path for testing if the server is alive from a browser
