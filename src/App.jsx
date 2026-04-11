@@ -43,7 +43,8 @@ const sermonsFields = [
   {name: 'preacher', label: 'Preacher', required: true},
   {name: 'date', label: 'Date', required: true},
   {name: 'scripture', label: 'Scripture Reference', required: true},
-  {name: 'series', label: 'Series', required: false}
+  {name: 'series', label: 'Series', required: false},
+  {name: 'audioUrl', label: 'Upload Audio', type: 'audio', required: false}
 ];
 
 const leadersFields = [

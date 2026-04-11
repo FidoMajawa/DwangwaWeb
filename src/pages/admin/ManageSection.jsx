@@ -19,7 +19,7 @@ const ManageSection = ({ title, endpoint, fields }) => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${API_BASE_URL}${endpoint}`);
+      const res = await fetch(`${API_BASE_URL}${endpoint}?t=${Date.now()}`, { cache: 'no-store' });
       if (!res.ok) throw new Error('Fetch failed');
       const json = await res.json();
       setData(json);
@@ -143,6 +143,20 @@ const ManageSection = ({ title, endpoint, fields }) => {
                     style={{ width: '100%', padding: '0.75rem', borderRadius: '4px', border: '1px solid #ccc', fontFamily: 'inherit', resize: 'vertical' }}
                     rows={4} required={field.required}
                   />
+                ) : field.type === 'audio' ? (
+                  <div style={{ padding: '1rem', border: '1px solid #eee', borderRadius: '4px', background: '#fcfcfc' }}>
+                    {formData[field.name] && (
+                      <div style={{ marginBottom: '1rem' }}>
+                        <audio controls src={formData[field.name].startsWith('http') ? formData[field.name] : `${API_BASE_URL}${formData[field.name]}`} style={{ width: '100%' }} />
+                      </div>
+                    )}
+                    <input 
+                      type="file" 
+                      accept="audio/*" 
+                      onChange={e => handleFileChange(e, field.name)}
+                      style={{ width: '100%', fontFamily: 'inherit' }}
+                    />
+                  </div>
                 ) : field.type === 'image' ? (
                   <div style={{ padding: '1rem', border: '1px solid #eee', borderRadius: '4px', background: '#fcfcfc' }}>
                     {formData[field.name] && (

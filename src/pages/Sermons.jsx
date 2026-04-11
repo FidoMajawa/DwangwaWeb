@@ -78,16 +78,43 @@ const Sermons = () => {
                     </span>
                   </div>
                   
-                  <div className="flex items-center gap-3 mt-6 pt-6 border-t border-slate-100 flex-wrap">
-                    <button className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-md font-medium hover:bg-primary-dark transition-colors shadow-sm hover:shadow">
-                      <PlayCircle size={18} /> Listen
-                    </button>
-                    <button className="p-2.5 text-slate-500 hover:text-primary hover:bg-primary/5 rounded-md transition-colors border border-slate-200" title="Download Audio">
-                      <Download size={20} />
-                    </button>
-                    <button className="p-2.5 text-slate-500 hover:text-primary hover:bg-primary/5 rounded-md transition-colors border border-slate-200" title="Sermon Notes">
-                      <FileText size={20} />
-                    </button>
+                  <div className="flex flex-col gap-4 mt-6 pt-6 border-t border-slate-100">
+                    
+                    {/* Render Audio Player if available */}
+                    {sermon.audioUrl ? (
+                      <div className="w-full bg-slate-50 p-3 rounded-lg border border-slate-200 shadow-sm">
+                        <span className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 block ml-1"><PlayCircle size={14} className="inline mr-1 pb-[2px]"/> Listen Now</span>
+                        <audio 
+                          controls 
+                          src={sermon.audioUrl.startsWith('http') ? sermon.audioUrl : `${API_BASE_URL}${sermon.audioUrl}`} 
+                          className="w-full h-10"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2 text-sm text-slate-400 italic">
+                        <PlayCircle size={16} /> Audio currently unavailable
+                      </div>
+                    )}
+                    
+                    {/* Action Buttons */}
+                    <div className="flex items-center gap-3 flex-wrap">
+                      {sermon.audioUrl && (
+                        <a 
+                          href={sermon.audioUrl.startsWith('http') ? sermon.audioUrl : `${API_BASE_URL}${sermon.audioUrl}`}
+                          download
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-md font-medium hover:bg-primary-dark transition-colors shadow-sm hover:shadow"
+                        >
+                          <Download size={18} /> Download MP3
+                        </a>
+                      )}
+                      {sermon.notesUrl && (
+                        <button className="flex flex-1 md:flex-none items-center justify-center gap-2 px-4 py-2.5 text-slate-600 hover:text-primary hover:bg-primary/5 rounded-md transition-colors border border-slate-200" title="Sermon Notes">
+                          <FileText size={18} /> Notes
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
