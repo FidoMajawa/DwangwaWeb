@@ -72,6 +72,33 @@ const ManageSection = ({ title, endpoint, fields }) => {
     }
   };
 
+  const handleFileChange = async (e, fieldName) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const data = new FormData();
+    data.append('image', file);
+
+    try {
+      const res = await fetch('http://localhost:5000/api/upload', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}` 
+        },
+        body: data
+      });
+
+      if (res.ok) {
+        const json = await res.json();
+        setFormData(prev => ({ ...prev, [fieldName]: json.imageUrl }));
+      } else {
+        alert('File upload failed');
+      }
+    } catch (error) {
+      alert('Error uploading file');
+    }
+  };
+
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this item?')) return;
     try {
@@ -107,6 +134,24 @@ const ManageSection = ({ title, endpoint, fields }) => {
                     style={{ width: '100%', padding: '0.75rem', borderRadius: '4px', border: '1px solid #ccc', fontFamily: 'inherit', resize: 'vertical' }}
                     rows={4} required={field.required}
                   />
+                ) : field.type === 'image' ? (
+                  <div style={{ padding: '1rem', border: '1px solid #eee', borderRadius: '4px', background: '#fcfcfc' }}>
+                    {formData[field.name] && (
+                      <div style={{ marginBottom: '1rem' }}>
+                        <img 
+                          src={formData[field.name].startsWith('http') ? formData[field.name] : `http://localhost:5000${formData[field.name]}`} 
+                          alt="Preview" 
+                          style={{ height: '120px', borderRadius: '4px', objectFit: 'cover', border: '1px solid #ddd' }} 
+                        />
+                      </div>
+                    )}
+                    <input 
+                      type="file" 
+                      accept="image/*" 
+                      onChange={e => handleFileChange(e, field.name)}
+                      style={{ width: '100%', fontFamily: 'inherit' }}
+                    />
+                  </div>
                 ) : (
                   <input 
                     type={field.type || 'text'} 

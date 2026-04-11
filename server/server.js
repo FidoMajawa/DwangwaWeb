@@ -3,6 +3,9 @@ import cors from 'cors';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import db from './db.js';
+import multer from 'multer';
+import path from 'path';
+import fs from 'fs';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -11,6 +14,23 @@ const JWT_SECRET = process.env.JWT_SECRET || 'dwangwa-super-secret-key';
 // Open CORS to prevent any blocking issues between Render and Vercel
 app.use(cors());
 app.use(express.json());
+
+// Serve uploads folder as static files
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+
+// Configure Multer for File Uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    if (!fs.existsSync('uploads')) {
+      fs.mkdirSync('uploads');
+    }
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+const upload = multer({ storage: storage });
 
 // Root path for testing if the server is alive from a browser
 app.get('/', (req, res) => {
@@ -45,6 +65,16 @@ app.post('/api/login', (req, res) => {
       res.json({ token, username: user.username });
     });
   });
+});
+
+// UPLOAD Endpoint
+app.post('/api/upload', authenticateToken, upload.single('image'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded.' });
+  }
+  // Send back the relative URL path
+  const imageUrl = `/uploads/${req.file.filename}`;
+  res.json({ imageUrl });
 });
 
 // Generic CRUD helpers for SQLite
@@ -114,6 +144,7 @@ createCRUDRoutes('/api/events', 'events');
 createCRUDRoutes('/api/news', 'news');
 createCRUDRoutes('/api/leaders', 'leaders');
 createCRUDRoutes('/api/ministries', 'ministries');
+createCRUDRoutes('/api/gallery', 'gallery');
 
 app.listen(PORT, () => {
   console.log(`Backend server running on port ${PORT}`);

@@ -42,6 +42,7 @@ const AdminLayout = () => {
           <NavLink to="/admin/sermons" style={linkStyle}><Settings size={20} /> Manage Sermons</NavLink>
           <NavLink to="/admin/leaders" style={linkStyle}><Users size={20} /> Manage Leaders</NavLink>
           <NavLink to="/admin/ministries" style={linkStyle}><Users size={20} /> Manage Ministries</NavLink>
+          <NavLink to="/admin/gallery" style={linkStyle}><FileText size={20} /> Manage Gallery</NavLink>
         </nav>
 
         <button onClick={handleLogout} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem 1rem', color: '#ff6b6b', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontWeight: 'bold' }}>

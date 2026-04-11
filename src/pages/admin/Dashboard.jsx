@@ -39,6 +39,12 @@ const Dashboard = () => {
           <p style={{ color: 'var(--color-text-light)', marginBottom: '1.5rem' }}>Add or edit church fellowship ministries.</p>
           <Link to="/admin/ministries" className="btn btn-outline" style={{ display: 'inline-block' }}>Manage Ministries</Link>
         </div>
+
+        <div style={{ background: 'white', padding: '1.5rem', borderRadius: '8px', boxShadow: 'var(--shadow-sm)' }}>
+          <h3 style={{ color: 'var(--color-primary)', marginBottom: '0.5rem' }}>Photo Gallery</h3>
+          <p style={{ color: 'var(--color-text-light)', marginBottom: '1.5rem' }}>Upload or remove photos from the gallery.</p>
+          <Link to="/admin/gallery" className="btn btn-outline" style={{ display: 'inline-block' }}>Manage Gallery</Link>
+        </div>
       </div>
     </div>
   );

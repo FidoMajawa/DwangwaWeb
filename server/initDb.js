@@ -61,6 +61,13 @@ const initDatabase = () => {
       meeting TEXT
     )`);
 
+    // Gallery table
+    db.run(`CREATE TABLE IF NOT EXISTS gallery (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT,
+      imageUrl TEXT
+    )`);
+
     console.log('Tables created or verified.');
 
     // Seed Admin User
@@ -127,6 +134,20 @@ const initDatabase = () => {
           ('Youth Ministry', 'Sun', 'Empowering the next generation to live for Christ. We hold weekly youth fellowships, camps, and community service projects.', 'Saturdays at 2:00 PM'),
           ('Women''s Guild', 'Heart', 'Women coming together in fellowship, prayer, and service. The Guild plays a central role in caring for the sick and elderly.', 'Thursdays at 3:00 PM')`);
         console.log("Seeded basic ministries");
+      }
+    });
+
+    // Seed Gallery
+    db.get("SELECT count(*) as count FROM gallery", [], (err, row) => {
+      if (row.count === 0) {
+        db.run(`INSERT INTO gallery (title, imageUrl) VALUES 
+          ('Worship Session', 'https://images.unsplash.com/photo-1548625361-2495dc0d7b21?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'),
+          ('Congregation Profile', 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'),
+          ('Choir at Altar', 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'),
+          ('Sunday Service', 'https://images.unsplash.com/photo-1511649475669-e288648b2339?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'),
+          ('Weekly Fellowship', 'https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'),
+          ('Youth Praise', 'https://images.unsplash.com/photo-1437604586419-f53eb778efef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')`);
+        console.log("Seeded basic gallery photos");
       }
     });
   });

@@ -49,7 +49,7 @@ const sermonsFields = [
 const leadersFields = [
   {name: 'name', label: 'Name', required: true},
   {name: 'role', label: 'Role', required: true},
-  {name: 'imageUrl', label: 'Image URL', required: true},
+  {name: 'imageUrl', label: 'Image Photo', type: 'image', required: true},
   {name: 'bio', label: 'Biography', type: 'textarea', required: true}
 ];
 
@@ -58,6 +58,11 @@ const ministriesFields = [
   {name: 'description', label: 'Description', type: 'textarea', required: true},
   {name: 'meeting', label: 'Meeting Time', required: false},
   {name: 'iconName', label: 'Icon Name (e.g. Users, Music, Heart)', required: false}
+];
+
+const galleryFields = [
+  {name: 'title', label: 'Photo Title', required: true},
+  {name: 'imageUrl', label: 'Upload Photo', type: 'image', required: true}
 ];
 
 function App() {
@@ -74,6 +79,7 @@ function App() {
             <Route path="sermons" element={<ManageSection title="Sermons" endpoint="/api/sermons" fields={sermonsFields} />} />
             <Route path="leaders" element={<ManageSection title="Leaders" endpoint="/api/leaders" fields={leadersFields} />} />
             <Route path="ministries" element={<ManageSection title="Ministries" endpoint="/api/ministries" fields={ministriesFields} />} />
+            <Route path="gallery" element={<ManageSection title="Gallery" endpoint="/api/gallery" fields={galleryFields} />} />
           </Route>
 
           {/* Public Routes with nested Header and Footer */}
