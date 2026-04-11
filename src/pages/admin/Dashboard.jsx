@@ -27,6 +27,18 @@ const Dashboard = () => {
           <p style={{ color: 'var(--color-text-light)', marginBottom: '1.5rem' }}>Upload new sermon records and study materials.</p>
           <Link to="/admin/sermons" className="btn btn-outline" style={{ display: 'inline-block' }}>Manage Sermons</Link>
         </div>
+
+        <div style={{ background: 'white', padding: '1.5rem', borderRadius: '8px', boxShadow: 'var(--shadow-sm)' }}>
+          <h3 style={{ color: 'var(--color-primary)', marginBottom: '0.5rem' }}>Sermon Leaders</h3>
+          <p style={{ color: 'var(--color-text-light)', marginBottom: '1.5rem' }}>Manage church leaders, pastors, and elders.</p>
+          <Link to="/admin/leaders" className="btn btn-outline" style={{ display: 'inline-block' }}>Manage Leaders</Link>
+        </div>
+
+        <div style={{ background: 'white', padding: '1.5rem', borderRadius: '8px', boxShadow: 'var(--shadow-sm)' }}>
+          <h3 style={{ color: 'var(--color-primary)', marginBottom: '0.5rem' }}>Church Ministries</h3>
+          <p style={{ color: 'var(--color-text-light)', marginBottom: '1.5rem' }}>Add or edit church fellowship ministries.</p>
+          <Link to="/admin/ministries" className="btn btn-outline" style={{ display: 'inline-block' }}>Manage Ministries</Link>
+        </div>
       </div>
     </div>
   );

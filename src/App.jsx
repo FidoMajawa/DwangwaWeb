@@ -53,6 +53,13 @@ const leadersFields = [
   {name: 'bio', label: 'Biography', type: 'textarea', required: true}
 ];
 
+const ministriesFields = [
+  {name: 'title', label: 'Ministry Name', required: true},
+  {name: 'description', label: 'Description', type: 'textarea', required: true},
+  {name: 'meeting', label: 'Meeting Time', required: false},
+  {name: 'iconName', label: 'Icon Name (e.g. Users, Music, Heart)', required: false}
+];
+
 function App() {
   return (
     <BrowserRouter>
@@ -66,6 +73,7 @@ function App() {
             <Route path="events" element={<ManageSection title="Events" endpoint="/api/events" fields={eventsFields} />} />
             <Route path="sermons" element={<ManageSection title="Sermons" endpoint="/api/sermons" fields={sermonsFields} />} />
             <Route path="leaders" element={<ManageSection title="Leaders" endpoint="/api/leaders" fields={leadersFields} />} />
+            <Route path="ministries" element={<ManageSection title="Ministries" endpoint="/api/ministries" fields={ministriesFields} />} />
           </Route>
 
           {/* Public Routes with nested Header and Footer */}
