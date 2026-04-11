@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, Outlet, Navigate, useNavigate } from 'react-router-dom';
-import { Settings, Calendar, FileText, Users, LogOut, Home, Menu, X } from 'lucide-react';
+import { LogOut, Menu, X } from 'lucide-react';
 
 const AdminLayout = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -18,72 +18,84 @@ const AdminLayout = () => {
   };
 
   const linkStyle = ({ isActive }) => 
-    `flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all duration-200 font-medium ${
+    `text-sm font-medium px-4 py-2 rounded-md transition-colors whitespace-nowrap ${
       isActive 
-        ? 'bg-secondary/20 text-secondary' 
-        : 'text-white hover:bg-white/10'
+        ? 'bg-blue-50 text-blue-700' 
+        : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50'
     }`;
 
   const navLinks = (
-    <nav className="flex-1 flex flex-col mt-6">
-      <NavLink to="/admin/dashboard" className={linkStyle} onClick={() => setIsMobileOpen(false)} end><Home size={20} /> Dashboard</NavLink>
-      <NavLink to="/admin/news" className={linkStyle} onClick={() => setIsMobileOpen(false)}><FileText size={20} /> Manage News</NavLink>
-      <NavLink to="/admin/events" className={linkStyle} onClick={() => setIsMobileOpen(false)}><Calendar size={20} /> Manage Events</NavLink>
-      <NavLink to="/admin/sermons" className={linkStyle} onClick={() => setIsMobileOpen(false)}><Settings size={20} /> Manage Sermons</NavLink>
-      <NavLink to="/admin/leaders" className={linkStyle} onClick={() => setIsMobileOpen(false)}><Users size={20} /> Manage Leaders</NavLink>
-      <NavLink to="/admin/ministries" className={linkStyle} onClick={() => setIsMobileOpen(false)}><Users size={20} /> Manage Ministries</NavLink>
-      <NavLink to="/admin/gallery" className={linkStyle} onClick={() => setIsMobileOpen(false)}><FileText size={20} /> Manage Gallery</NavLink>
-    </nav>
+    <>
+      <NavLink to="/admin/dashboard" className={linkStyle} onClick={() => setIsMobileOpen(false)} end>Dashboard</NavLink>
+      <NavLink to="/admin/news" className={linkStyle} onClick={() => setIsMobileOpen(false)}>News</NavLink>
+      <NavLink to="/admin/events" className={linkStyle} onClick={() => setIsMobileOpen(false)}>Events</NavLink>
+      <NavLink to="/admin/sermons" className={linkStyle} onClick={() => setIsMobileOpen(false)}>Sermons</NavLink>
+      <NavLink to="/admin/leaders" className={linkStyle} onClick={() => setIsMobileOpen(false)}>Leadership</NavLink>
+      <NavLink to="/admin/ministries" className={linkStyle} onClick={() => setIsMobileOpen(false)}>Ministries</NavLink>
+      <NavLink to="/admin/gallery" className={linkStyle} onClick={() => setIsMobileOpen(false)}>Gallery</NavLink>
+    </>
   );
 
   return (
-    <div className="flex h-screen bg-slate-50 overflow-hidden relative">
+    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       
-      {/* Mobile Header Bar */}
-      <div className="md:hidden absolute top-0 left-0 right-0 h-16 bg-primary-dark flex items-center justify-between px-4 z-40 shadow-md">
-        <h2 className="text-xl font-bold text-secondary">Admin Panel</h2>
-        <button onClick={() => setIsMobileOpen(true)} className="text-white p-2">
-          <Menu size={28} />
-        </button>
-      </div>
+      {/* Top Header */}
+      <header className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            
+            {/* Logo area */}
+            <div className="flex-shrink-0 flex items-center pr-6">
+              <span className="text-primary font-heading font-bold text-xl tracking-tight">Admin Portal</span>
+            </div>
 
-      {/* Overlay for Mobile */}
-      {isMobileOpen && (
-        <div 
-          className="md:hidden fixed inset-0 bg-black/60 z-40 transition-opacity"
-          onClick={() => setIsMobileOpen(false)}
-        />
-      )}
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex ml-4 flex-1 space-x-1 overflow-x-auto py-2 items-center">
+              {navLinks}
+            </nav>
 
-      {/* Sidebar */}
-      <aside className={`
-        fixed inset-y-0 left-0 z-50 w-64 bg-primary-dark text-white flex flex-col p-6 shadow-xl
-        transform transition-transform duration-300 ease-in-out
-        md:relative md:translate-x-0
-        ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'}
-      `}>
-        <div className="flex items-center justify-between mb-4 mt-2 md:mt-0">
-          <h2 className="text-2xl font-bold text-secondary tracking-wide">Admin Panel</h2>
-          <button onClick={() => setIsMobileOpen(false)} className="md:hidden text-slate-300 hover:text-white">
-            <X size={24} />
-          </button>
+            {/* Logout button (Desktop) */}
+            <div className="hidden md:flex flex-shrink-0 items-center ml-6 border-l border-slate-200 pl-6">
+              <button 
+                onClick={handleLogout} 
+                className="flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-red-600 transition-colors"
+                title="Logout"
+              >
+                <LogOut size={18} /> Logout
+              </button>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="flex items-center md:hidden">
+              <button 
+                onClick={() => setIsMobileOpen(!isMobileOpen)} 
+                className="text-slate-500 hover:text-primary p-2"
+              >
+                {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
         </div>
-        
-        {navLinks}
 
-        <button 
-          onClick={handleLogout} 
-          className="flex items-center gap-3 px-4 py-3 text-red-400 hover:text-red-300 hover:bg-red-400/10 rounded-lg mt-auto font-bold transition-colors w-full"
-        >
-          <LogOut size={20} /> Logout
-        </button>
-      </aside>
+        {/* Mobile Navigation */}
+        {isMobileOpen && (
+          <div className="md:hidden border-t border-slate-100 bg-white shadow-inner">
+            <div className="pt-2 pb-4 px-4 flex flex-col space-y-1">
+              {navLinks}
+              <button 
+                onClick={handleLogout} 
+                className="flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-red-500 hover:bg-red-50 rounded-md w-full text-left"
+              >
+                <LogOut size={16} /> Logout
+              </button>
+            </div>
+          </div>
+        )}
+      </header>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col h-screen overflow-hidden pt-16 md:pt-0">
-        <div className="flex-1 overflow-y-auto p-4 md:p-8">
-          <Outlet />
-        </div>
+      <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+        <Outlet />
       </main>
     </div>
   );
