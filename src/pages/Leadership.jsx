@@ -45,7 +45,7 @@ const Leadership = () => {
               <div key={leader.id} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 group">
                 <div className="aspect-w-3 aspect-h-3 sm:aspect-w-4 sm:aspect-h-3 relative overflow-hidden bg-slate-200 h-64">
                   <img 
-                    src={leader.imageUrl || 'https://via.placeholder.com/400x400?text=Leader'} 
+                    src={leader.imageUrl ? (leader.imageUrl.startsWith('http') ? leader.imageUrl : `${API_BASE_URL}${leader.imageUrl}`) : 'https://via.placeholder.com/400x400?text=Leader'} 
                     alt={leader.name} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   />
