@@ -19,7 +19,7 @@ const ManageSection = ({ title, endpoint, fields }) => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:5000${endpoint}`);
+      const res = await fetch(`${API_BASE_URL}${endpoint}`);
       if (!res.ok) throw new Error('Fetch failed');
       const json = await res.json();
       setData(json);
@@ -57,7 +57,7 @@ const ManageSection = ({ title, endpoint, fields }) => {
     e.preventDefault();
     const isNew = !currentId;
     const method = isNew ? 'POST' : 'PUT';
-    const url = `http://localhost:5000${endpoint}${isNew ? '' : '/' + currentId}`;
+    const url = `${API_BASE_URL}${endpoint}${isNew ? '' : '/' + currentId}`;
 
     try {
       const res = await fetch(url, { method, headers, body: JSON.stringify(formData) });
@@ -65,7 +65,8 @@ const ManageSection = ({ title, endpoint, fields }) => {
         handleCloseForm();
         fetchData();
       } else {
-        alert('Error saving record');
+        const errorText = await res.text();
+        alert(`Error saving record: ${errorText} (Status: ${res.status})`);
       }
     } catch (error) {
        alert('Connection error');
@@ -80,7 +81,7 @@ const ManageSection = ({ title, endpoint, fields }) => {
     data.append('image', file);
 
     try {
-      const res = await fetch('http://localhost:5000/api/upload', {
+      const res = await fetch(`${API_BASE_URL}/api/upload`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}` 
@@ -102,10 +103,18 @@ const ManageSection = ({ title, endpoint, fields }) => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this item?')) return;
     try {
-      const res = await fetch(`http://localhost:5000${endpoint}/${id}`, { method: 'DELETE', headers });
-      if (res.ok) fetchData();
+      const res = await fetch(`${API_BASE_URL}${endpoint}/${id}`, { 
+        method: 'DELETE', 
+        headers 
+      });
+      if (res.ok) {
+        fetchData();
+      } else {
+        const errText = await res.text();
+        alert(`Error deleting record: ${errText}`);
+      }
     } catch (e) {
-      alert('Error deleting');
+      alert('Connection error deleting');
     }
   };
 
@@ -139,7 +148,7 @@ const ManageSection = ({ title, endpoint, fields }) => {
                     {formData[field.name] && (
                       <div style={{ marginBottom: '1rem' }}>
                         <img 
-                          src={formData[field.name].startsWith('http') ? formData[field.name] : `http://localhost:5000${formData[field.name]}`} 
+                          src={formData[field.name].startsWith('http') ? formData[field.name] : `${API_BASE_URL}${formData[field.name]}`} 
                           alt="Preview" 
                           style={{ height: '120px', borderRadius: '4px', objectFit: 'cover', border: '1px solid #ddd' }} 
                         />

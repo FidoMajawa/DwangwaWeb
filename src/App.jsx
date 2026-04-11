@@ -74,12 +74,12 @@ function App() {
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="news" element={<ManageSection title="News" endpoint="/api/news" fields={newsFields} />} />
-            <Route path="events" element={<ManageSection title="Events" endpoint="/api/events" fields={eventsFields} />} />
-            <Route path="sermons" element={<ManageSection title="Sermons" endpoint="/api/sermons" fields={sermonsFields} />} />
-            <Route path="leaders" element={<ManageSection title="Leaders" endpoint="/api/leaders" fields={leadersFields} />} />
-            <Route path="ministries" element={<ManageSection title="Ministries" endpoint="/api/ministries" fields={ministriesFields} />} />
-            <Route path="gallery" element={<ManageSection title="Gallery" endpoint="/api/gallery" fields={galleryFields} />} />
+            <Route path="news" element={<ManageSection key="news" title="News" endpoint="/api/news" fields={newsFields} />} />
+            <Route path="events" element={<ManageSection key="events" title="Events" endpoint="/api/events" fields={eventsFields} />} />
+            <Route path="sermons" element={<ManageSection key="sermons" title="Sermons" endpoint="/api/sermons" fields={sermonsFields} />} />
+            <Route path="leaders" element={<ManageSection key="leaders" title="Leaders" endpoint="/api/leaders" fields={leadersFields} />} />
+            <Route path="ministries" element={<ManageSection key="ministries" title="Ministries" endpoint="/api/ministries" fields={ministriesFields} />} />
+            <Route path="gallery" element={<ManageSection key="gallery" title="Gallery" endpoint="/api/gallery" fields={galleryFields} />} />
           </Route>
 
           {/* Public Routes with nested Header and Footer */}
